@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://dl63j3eaedywp"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_2ry72"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3c7qg"]
+transparency = 1
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_jbjys"]
+material = SubResource("StandardMaterial3D_3c7qg")
+inner_radius = 3.75
+outer_radius = 4.0
+rings = 6
+ring_segments = 8
+
+[sub_resource type="TorusMesh" id="TorusMesh_e8v0y"]
+material = SubResource("StandardMaterial3D_3c7qg")
+inner_radius = 3.25
+outer_radius = 3.5
+rings = 6
+ring_segments = 8
+
+[sub_resource type="TorusMesh" id="TorusMesh_23s01"]
+material = SubResource("StandardMaterial3D_3c7qg")
+inner_radius = 2.75
+outer_radius = 3.0
+rings = 6
+ring_segments = 8
+
+[sub_resource type="BoxMesh" id="BoxMesh_ldn2r"]
+size = Vector3(4, 1, 4)
+
+[node name="Gate" type="Area3D"]
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2.08165e-12, 2.08165e-12, -0.5)
+shape = SubResource("WorldBoundaryShape3D_2ry72")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, 2.18557e-08, 0.5, 0.5, -3.78552e-08, -0.866025, 0, 1, -4.37114e-08, 0, 3.4, 0)
+transparency = 0.8
+mesh = SubResource("TorusMesh_jbjys")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, 2.18557e-08, 0.5, 0.5, -3.78552e-08, -0.866025, 0, 1, -4.37114e-08, 2.08165e-12, 2.9, -2)
+transparency = 0.8
+mesh = SubResource("TorusMesh_e8v0y")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, 2.18557e-08, 0.5, 0.5, -3.78552e-08, -0.866025, 0, 1, -4.37114e-08, 2.08165e-12, 2.5, -4)
+transparency = 0.8
+mesh = SubResource("TorusMesh_23s01")
+
+[node name="Floor4x1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.5, -2)
+transparency = 0.8
+mesh = SubResource("BoxMesh_ldn2r")

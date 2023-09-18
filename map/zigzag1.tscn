@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://cviv8cghq4jr2"]
+
+[ext_resource type="PackedScene" uid="uid://dl63j3eaedywp" path="res://map/parts/gate.tscn" id="1_2mubl"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Gate" parent="." instance=ExtResource("1_2mubl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, -4)
+
+[node name="Gate2" parent="." instance=ExtResource("1_2mubl")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -51.6)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 2, -0.7, -16)
+use_collision = true
+size = Vector3(4, 1, 8)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="."]
+transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 2, -0.7, -32)
+use_collision = true
+size = Vector3(4, 1, 8)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="."]
+transform = Transform3D(0.965926, -0.258819, 0, 0.258819, 0.965926, 0, 0, 0, 1, 2, -0.7, -47.5574)
+use_collision = true
+size = Vector3(4, 1, 8)
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="."]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -2, -0.7, -8)
+use_collision = true
+size = Vector3(4, 1, 8)
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="."]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -2, -0.7, -24)
+use_collision = true
+size = Vector3(4, 1, 8)
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="."]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, -2, -0.7, -39.5574)
+use_collision = true
+size = Vector3(4, 1, 8)

@@ -1,0 +1,104 @@
+[gd_scene load_steps=13 format=3 uid="uid://cjk8d6xoo2aaa"]
+
+[ext_resource type="Script" path="res://scenes/start.gd" id="1_fnrdp"]
+[ext_resource type="Texture2D" uid="uid://cknnpbe7gnutf" path="res://textures/prototype/Green/texture_01.png" id="2_nv715"]
+[ext_resource type="PackedScene" uid="uid://bws1nxafxkrd" path="res://scenes/ball.tscn" id="3_o0pjg"]
+[ext_resource type="Script" path="res://scenes/pause.gd" id="4_rusxb"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dv26n"]
+
+[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_jgkf5"]
+panorama = SubResource("CompressedTexture2D_dv26n")
+
+[sub_resource type="Sky" id="Sky_cvyow"]
+sky_material = SubResource("PanoramaSkyMaterial_jgkf5")
+
+[sub_resource type="Environment" id="Environment_od71g"]
+background_mode = 1
+sky = SubResource("Sky_cvyow")
+glow_enabled = true
+glow_intensity = 5.0
+fog_light_energy = 0.1
+volumetric_fog_albedo = Color(0, 0, 0, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0xg7v"]
+albedo_texture = ExtResource("2_nv715")
+uv1_scale = Vector3(0.25, 0.25, 0.25)
+uv1_triplanar = true
+
+[sub_resource type="InputEventAction" id="InputEventAction_yn3yo"]
+action = &"fullscreen"
+
+[sub_resource type="Shortcut" id="Shortcut_ddjjt"]
+events = [SubResource("InputEventAction_yn3yo")]
+
+[sub_resource type="Shortcut" id="Shortcut_g2ksc"]
+
+[node name="Start" type="Node3D"]
+script = ExtResource("1_fnrdp")
+
+[node name="environment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_od71g")
+
+[node name="StartPlatform" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.5, 2.08165e-12)
+visible = false
+use_collision = true
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_0xg7v")
+
+[node name="Ball" parent="." instance=ExtResource("3_o0pjg")]
+process_mode = 1
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 3, 2.08165e-12)
+top_level = true
+gravity_scale = 0.0
+angular_velocity = Vector3(1.0472, 0.349066, 0.872665)
+angular_damp_mode = 1
+angular_damp = 0.0
+
+[node name="Menu" type="CanvasLayer" parent="."]
+process_mode = 3
+script = ExtResource("4_rusxb")
+
+[node name="CenterContainer" type="CenterContainer" parent="Menu"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Menu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Wiggly Ball"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Menu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Welcome!
+In this game you need to wiggle the ball sideways to gain speed.
+But be careful.
+With great speed comes great bounces!"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="Menu/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+shortcut = SubResource("Shortcut_ddjjt")
+text = "Start"
+
+[node name="FullscreenButton" type="Button" parent="Menu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+shortcut = SubResource("Shortcut_g2ksc")
+text = "Fullscreen (F)"
+
+[node name="Label3" type="Label" parent="Menu/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Press Esc to Pause at any time"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_pressed"]

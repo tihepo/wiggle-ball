@@ -1,0 +1,16 @@
+[gd_scene load_steps=2 format=3 uid="uid://bwdfebnlcskvp"]
+
+[ext_resource type="PackedScene" uid="uid://dl63j3eaedywp" path="res://map/parts/gate.tscn" id="1_6t26p"]
+
+[node name="Winding2" type="Node3D"]
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, 0, 0)
+use_collision = true
+polygon = PackedVector2Array(-2, 0, -5.25528, -6.43506, -3.34146, -15.2496, -13.6497, -24.0975, -12.6, -34.7, -14, -39.5, -10.1, -40.5, -9, -37.2, -8.42248, -25.7811, 1.57564, -16.7719, -1.17346, -6.46863, 2, 0)
+
+[node name="Gate" parent="." instance=ExtResource("1_6t26p")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[node name="Gate2" parent="." instance=ExtResource("1_6t26p")]
+transform = Transform3D(-0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, -0.965926, -12, 2.08165e-12, 40)
