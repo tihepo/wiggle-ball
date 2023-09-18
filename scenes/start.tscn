@@ -27,7 +27,7 @@ uv1_scale = Vector3(0.25, 0.25, 0.25)
 uv1_triplanar = true
 
 [sub_resource type="InputEventAction" id="InputEventAction_yn3yo"]
-action = &"fullscreen"
+action = &"pause"
 
 [sub_resource type="Shortcut" id="Shortcut_ddjjt"]
 events = [SubResource("InputEventAction_yn3yo")]
@@ -56,27 +56,27 @@ angular_velocity = Vector3(1.0472, 0.349066, 0.872665)
 angular_damp_mode = 1
 angular_damp = 0.0
 
-[node name="Menu" type="CanvasLayer" parent="."]
+[node name="Pause" type="CanvasLayer" parent="."]
 process_mode = 3
 script = ExtResource("4_rusxb")
 
-[node name="CenterContainer" type="CenterContainer" parent="Menu"]
+[node name="CenterContainer" type="CenterContainer" parent="Pause"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause/CenterContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Menu/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="Pause/CenterContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 25
 text = "Wiggly Ball"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="Menu/CenterContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="Pause/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Welcome!
 In this game you need to wiggle the ball sideways to gain speed.
@@ -84,21 +84,21 @@ But be careful.
 With great speed comes great bounces!"
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="Menu/CenterContainer/VBoxContainer"]
+[node name="StartButton" type="Button" parent="Pause/CenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(150, 60)
 layout_mode = 2
 shortcut = SubResource("Shortcut_ddjjt")
 text = "Start"
 
-[node name="FullscreenButton" type="Button" parent="Menu/CenterContainer/VBoxContainer"]
+[node name="FullscreenButton" type="Button" parent="Pause/CenterContainer/VBoxContainer"]
 layout_mode = 2
 shortcut = SubResource("Shortcut_g2ksc")
 text = "Fullscreen (F)"
 
-[node name="Label3" type="Label" parent="Menu/CenterContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="Pause/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Press Esc to Pause at any time"
 horizontal_alignment = 1
 
-[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="Menu/CenterContainer/VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_pressed"]
+[connection signal="pressed" from="Pause/CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="Pause/CenterContainer/VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_pressed"]

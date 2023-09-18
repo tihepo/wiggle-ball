@@ -11,7 +11,7 @@ func _unhandled_input(event):
 	if event.is_action_released("fullscreen"):
 		toggle_fullscreen()
 
-	if event.is_action_released("game_pause"):
+	if event.is_action_released("pause"):
 		if get_tree().paused:
 			unpause()
 		else:

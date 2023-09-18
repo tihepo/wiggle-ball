@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dqac65jrr30w6"]
+[gd_scene load_steps=12 format=3 uid="uid://dqac65jrr30w6"]
 
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_x87ln"]
 [ext_resource type="Texture2D" uid="uid://cknnpbe7gnutf" path="res://textures/prototype/Green/texture_01.png" id="2_8ys57"]
 [ext_resource type="PackedScene" uid="uid://dl63j3eaedywp" path="res://map/parts/gate.tscn" id="3_0o6w0"]
 [ext_resource type="Script" path="res://scenes/geometry.gd" id="4_jra8y"]
+[ext_resource type="Script" path="res://scenes/pause.gd" id="6_m74fr"]
 [ext_resource type="PackedScene" uid="uid://bws1nxafxkrd" path="res://scenes/ball.tscn" id="11_sydck"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dv26n"]
@@ -55,4 +56,49 @@ script = ExtResource("4_jra8y")
 [node name="Ball" parent="." instance=ExtResource("11_sydck")]
 transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, 0, 2, 0)
 
+[node name="Pause" type="CanvasLayer" parent="."]
+process_mode = 3
+visible = false
+script = ExtResource("6_m74fr")
+
+[node name="CenterContainer" type="CenterContainer" parent="Pause"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Pause/CenterContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Pause/CenterContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 25
+text = "Wiggly Ball"
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Pause/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Welcome!
+In this game you need to wiggle the ball sideways to gain speed.
+But be careful.
+With great speed comes great bounces!"
+horizontal_alignment = 1
+
+[node name="StartButton" type="Button" parent="Pause/CenterContainer/VBoxContainer"]
+custom_minimum_size = Vector2(150, 60)
+layout_mode = 2
+text = "Continue"
+
+[node name="FullscreenButton" type="Button" parent="Pause/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Fullscreen (F)"
+
+[node name="Label3" type="Label" parent="Pause/CenterContainer/VBoxContainer"]
+layout_mode = 2
+text = "Press Esc to Pause at any time"
+horizontal_alignment = 1
+
 [connection signal="body_entered" from="Gate" to="." method="_on_gate_body_entered"]
+[connection signal="pressed" from="Pause/CenterContainer/VBoxContainer/StartButton" to="Pause" method="unpause"]
+[connection signal="pressed" from="Pause/CenterContainer/VBoxContainer/FullscreenButton" to="Pause" method="toggle_fullscreen"]
