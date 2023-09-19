@@ -17,10 +17,10 @@ var sections: Array[PackedScene] = [
 @onready var geometry = $geometry
 @onready var camera = $Ball/Target/camera
 
-@onready var next_gate = $StartPlatform/Gate
+@onready var next_gate = $StartPlatform/StartGate
 
 var N = 0
-var max_live_sections = 5
+var max_live_sections = 4
 
 var live_sections: Array[Node3D]
 
@@ -29,7 +29,6 @@ var distance = 0.0
 var last_position: Vector3
 
 func _ready():
-	gate_passed()
 	ball.steering = true
 	unpause()
 	%Pause.visible = false
@@ -39,6 +38,8 @@ func _ready():
 	
 	# Ensure start platform gets freed like other sections we've passed
 	live_sections.append($StartPlatform)
+	spawn()
+	spawn()
 	
 	last_position = ball.global_position
 
@@ -88,8 +89,9 @@ func gate_passed():
 #	]
 
 	# Remove one existing sections
-	while len(live_sections) > max_live_sections:
-		live_sections.pop_front().queue_free()
+	if len(live_sections) >= max_live_sections:
+		live_sections.front().queue_free()
+		live_sections.pop_front()
 		
 #	while len(live_sections) <= max_live_sections:
 	spawn()
@@ -107,16 +109,19 @@ func spawn():
 	live_sections.append(section)
 
 	# Transform so Gate aligns with previous gate (next_gate)
-	var gate = section.find_child("Gate")
+	var gate = section.find_child("StartGate")
 	section.transform *= next_gate.global_transform
 	section.transform *= gate.transform.inverse()
 
-	gate.connect("body_entered", _on_gate_body_entered)
+	gate.connect("hit", _on_gate_hit)
+	gate.connect("missed", _on_gate_missed)
 
 	next_gate = section.find_child("Gate2")
-	gate.visible = false
+#	gate.visible = false
 	next_gate.visible = false
 
-func _on_gate_body_entered(body):
+func _on_gate_hit():
 	gate_passed()
 
+func _on_gate_missed():
+	gameover()

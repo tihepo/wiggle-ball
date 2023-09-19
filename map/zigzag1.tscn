@@ -1,11 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cviv8cghq4jr2"]
+[gd_scene load_steps=3 format=3 uid="uid://cviv8cghq4jr2"]
 
 [ext_resource type="PackedScene" uid="uid://dl63j3eaedywp" path="res://map/parts/gate.tscn" id="1_2mubl"]
+[ext_resource type="PackedScene" uid="uid://bft2a5qn2einq" path="res://map/parts/start_gate.tscn" id="1_3sqvv"]
 
 [node name="Node3D" type="Node3D"]
 
-[node name="Gate" parent="." instance=ExtResource("1_2mubl")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 2.08165e-12, -4)
+[node name="StartGate" parent="." instance=ExtResource("1_3sqvv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3)
 
 [node name="Gate2" parent="." instance=ExtResource("1_2mubl")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -51.6)

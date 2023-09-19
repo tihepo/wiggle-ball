@@ -1,0 +1,126 @@
+[gd_scene load_steps=13 format=3 uid="uid://bft2a5qn2einq"]
+
+[ext_resource type="Script" path="res://map/parts/start_gate.gd" id="1_my5gk"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_2ry72"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_troqm"]
+height = 1.0
+radius = 10.0
+
+[sub_resource type="TorusMesh" id="TorusMesh_jbjys"]
+inner_radius = 9.75
+outer_radius = 10.0
+ring_segments = 8
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_1jurb"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_kd6q4"]
+noise = SubResource("FastNoiseLite_1jurb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qyfqr"]
+transparency = 1
+emission_enabled = true
+emission = Color(1, 0.831373, 0.380392, 1)
+rim_enabled = true
+rim = 0.5
+refraction_enabled = true
+refraction_texture = SubResource("NoiseTexture2D_kd6q4")
+
+[sub_resource type="TorusMesh" id="TorusMesh_031j8"]
+inner_radius = 3.7
+outer_radius = 3.75
+ring_segments = 8
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3c7qg"]
+transparency = 1
+emission = Color(1, 1, 1, 1)
+
+[sub_resource type="TorusMesh" id="TorusMesh_e8v0y"]
+material = SubResource("StandardMaterial3D_3c7qg")
+inner_radius = 3.25
+outer_radius = 3.5
+rings = 6
+ring_segments = 8
+
+[sub_resource type="TorusMesh" id="TorusMesh_23s01"]
+material = SubResource("StandardMaterial3D_3c7qg")
+inner_radius = 2.75
+outer_radius = 3.0
+rings = 6
+ring_segments = 8
+
+[sub_resource type="BoxMesh" id="BoxMesh_ldn2r"]
+size = Vector3(4, 1, 4)
+
+[node name="StartGate" type="Node3D"]
+script = ExtResource("1_my5gk")
+
+[node name="Plane" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionPlane" type="CollisionShape3D" parent="Plane"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 2.08165e-12, 2.08165e-12, -2.5)
+shape = SubResource("WorldBoundaryShape3D_2ry72")
+
+[node name="Cylinder" type="Area3D" parent="."]
+collision_mask = 2
+
+[node name="CollisionCylinder" type="CollisionShape3D" parent="Cylinder"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, -1, 0, 1, -4.37114e-08, 0, 3.4, -0.5)
+shape = SubResource("CylinderShape3D_troqm")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, 5.85622e-09, 0.5, 0.5, -2.18557e-08, -0.866025, 5.85622e-09, 1, -2.18557e-08, 0, 3.4, 0)
+transparency = 0.9
+mesh = SubResource("TorusMesh_jbjys")
+surface_material_override/0 = SubResource("StandardMaterial3D_qyfqr")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, 5.85622e-09, 0.5, 0.5, -2.18557e-08, -0.866025, 5.85622e-09, 1, -2.18557e-08, 0, 3.4, -0.414641)
+visible = false
+transparency = 0.9
+mesh = SubResource("TorusMesh_031j8")
+surface_material_override/0 = SubResource("StandardMaterial3D_qyfqr")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, 5.85622e-09, 0.5, 0.5, -2.18557e-08, -0.866025, 5.85622e-09, 1, -2.18557e-08, 0, 3.4, -0.814641)
+visible = false
+transparency = 0.9
+mesh = SubResource("TorusMesh_031j8")
+surface_material_override/0 = SubResource("StandardMaterial3D_qyfqr")
+
+[node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, 5.85622e-09, 0.5, 0.5, -2.18557e-08, -0.866025, 5.85622e-09, 1, -2.18557e-08, 0, 3.4, -1.21464)
+visible = false
+transparency = 0.9
+mesh = SubResource("TorusMesh_031j8")
+surface_material_override/0 = SubResource("StandardMaterial3D_qyfqr")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, 2.18557e-08, 0.5, 0.5, -3.78552e-08, -0.866025, 0, 1, -4.37114e-08, 2.08165e-12, 2.9, -2)
+visible = false
+transparency = 0.8
+mesh = SubResource("TorusMesh_e8v0y")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.866025, 2.18557e-08, 0.5, 0.5, -3.78552e-08, -0.866025, 0, 1, -4.37114e-08, 2.08165e-12, 2.5, -4)
+visible = false
+transparency = 0.8
+mesh = SubResource("TorusMesh_23s01")
+
+[node name="Floor4x1" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.5, -2)
+visible = false
+transparency = 0.8
+mesh = SubResource("BoxMesh_ldn2r")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.4, -0.1)
+light_color = Color(1, 0.827451, 0.533333, 1)
+light_energy = 10.0
+omni_range = 15.0
+omni_attenuation = 1.31951
+
+[connection signal="body_entered" from="Plane" to="." method="_on_plane_body_entered"]
+[connection signal="body_entered" from="Cylinder" to="." method="_on_cylinder_body_entered"]
