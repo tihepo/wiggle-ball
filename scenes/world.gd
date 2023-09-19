@@ -2,15 +2,17 @@ extends Node3D
 
 var sections: Array[PackedScene] = [
 	preload("res://map/bouncy1.tscn"),
-#	preload("res://map/halfpipe1.tscn"),
+	preload("res://map/halfpipe1.tscn"),
 	preload("res://map/halfpipe2.tscn"),
 	preload("res://map/halfpipe3.tscn"),
-#	preload("res://map/tube1.tscn"),
+	preload("res://map/tube1.tscn"),
 	preload("res://map/winding1.tscn"),
 	preload("res://map/winding2.tscn"),
 	preload("res://map/winding3.tscn"),
 	preload("res://map/winding4.tscn"),
 	preload("res://map/zigzag1.tscn"),
+	preload("res://map/leo1.tscn"),
+	preload("res://map/leo2.tscn"),
 ]
 
 @onready var ball = $Ball

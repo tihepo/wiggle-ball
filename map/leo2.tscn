@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://bi4yd87a2hl3x"]
+
+[ext_resource type="PackedScene" uid="uid://b5tseho2jxitl" path="res://map/parts/start_gate.tscn" id="2_xvn7t"]
+[ext_resource type="PackedScene" uid="uid://dl63j3eaedywp" path="res://map/parts/gate.tscn" id="3_ujx22"]
+
+[node name="Halfpipe3" type="Node3D"]
+
+[node name="CSGPolygon3D4" type="CSGPolygon3D" parent="."]
+transform = Transform3D(0.997863, -0.0653512, 2.43456e-09, -0.0653512, -0.997863, 3.71733e-08, -1.05619e-15, -3.72529e-08, -1, 1.11439, -0.257607, -16.6346)
+use_collision = true
+polygon = PackedVector2Array(2.00962, 2.77406, 1.6973, 2.9438, 0.880361, 3.19634, 1.2471, 3.09768, 0.390569, 3.31549, -0.349393, 3.41372, -0.830855, 3.47013, -1.5237, 3.52794, -2.61942, 3.51262, -3.74234, 3.46176, -4.35497, 3.41481, -4.75946, 3.3169, -5.57655, 2.99721, -5.18039, 3.15787, -5.94446, 2.74978, -6.21027, 2.6282, -6.51228, 2.39487, -6.73657, 2.18995, -7.0047, 1.86076, -7.58001, 2.91917, -4.54007, 5.0907, 0.432739, 4.88116, 3.46149, 3.89325, 5.01007, 0.87323, 3.68868, 0.975481, 3.48193, 1.32169, 3.2833, 1.7079, 2.87978, 2.1946, 3.06661, 2.00821, 2.44094, 2.5219)
+depth = 40.0
+
+[node name="StartGate" parent="." instance=ExtResource("2_xvn7t")]
+transform = Transform3D(-1, -5.55393e-10, -8.7421e-08, 3.12772e-25, 0.99998, -0.00635296, 8.74228e-08, -0.00635296, -0.99998, -0.33781, -3.51576, -16.6485)
+
+[node name="Gate2" parent="." instance=ExtResource("3_ujx22")]
+transform = Transform3D(-1, -5.55393e-10, -8.7421e-08, 3.12772e-25, 0.99998, -0.00635296, 8.74228e-08, -0.00635296, -0.99998, -0.33781, -3.53003, 23.4515)

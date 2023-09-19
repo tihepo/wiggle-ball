@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_x87ln"]
 [ext_resource type="Texture2D" uid="uid://cknnpbe7gnutf" path="res://textures/prototype/Green/texture_01.png" id="2_8ys57"]
 [ext_resource type="Script" path="res://scenes/geometry.gd" id="4_jra8y"]
-[ext_resource type="PackedScene" uid="uid://bft2a5qn2einq" path="res://map/parts/start_gate.tscn" id="4_sfr6e"]
+[ext_resource type="PackedScene" uid="uid://b5tseho2jxitl" path="res://map/parts/start_gate.tscn" id="4_sfr6e"]
 [ext_resource type="Script" path="res://scenes/pause.gd" id="6_trnux"]
 [ext_resource type="Theme" uid="uid://dvb4p5ixtsmgm" path="res://theme.tres" id="7_hdiu4"]
 [ext_resource type="PackedScene" uid="uid://bws1nxafxkrd" path="res://scenes/ball.tscn" id="11_sydck"]

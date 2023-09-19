@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://chdanjwg1ix3s"]
 
 [ext_resource type="PackedScene" uid="uid://dl63j3eaedywp" path="res://map/parts/gate.tscn" id="1_4717f"]
-[ext_resource type="PackedScene" uid="uid://bft2a5qn2einq" path="res://map/parts/start_gate.tscn" id="1_kxe6s"]
+[ext_resource type="PackedScene" uid="uid://b5tseho2jxitl" path="res://map/parts/start_gate.tscn" id="1_kxe6s"]
 
 [node name="Halfpipe1" type="Node3D"]
 
