@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://scenes/start.gd" id="1_fnrdp"]
 [ext_resource type="Texture2D" uid="uid://cknnpbe7gnutf" path="res://textures/prototype/Green/texture_01.png" id="2_nv715"]
 [ext_resource type="PackedScene" uid="uid://bws1nxafxkrd" path="res://scenes/ball.tscn" id="3_o0pjg"]
-[ext_resource type="Script" path="res://scenes/pause.gd" id="4_rusxb"]
+[ext_resource type="Theme" uid="uid://dvb4p5ixtsmgm" path="res://theme.tres" id="5_ysw0k"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dv26n"]
 
@@ -27,7 +27,7 @@ uv1_scale = Vector3(0.25, 0.25, 0.25)
 uv1_triplanar = true
 
 [sub_resource type="InputEventAction" id="InputEventAction_yn3yo"]
-action = &"pause"
+action = &"ui_accept"
 
 [sub_resource type="Shortcut" id="Shortcut_ddjjt"]
 events = [SubResource("InputEventAction_yn3yo")]
@@ -52,53 +52,56 @@ process_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, 3, 2.08165e-12)
 top_level = true
 gravity_scale = 0.0
-angular_velocity = Vector3(1.0472, 0.349066, 0.872665)
-angular_damp_mode = 1
-angular_damp = 0.0
+angular_velocity = Vector3(0, 0.872665, 0.523599)
+angular_damp = 0.5
 
-[node name="Pause" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
-script = ExtResource("4_rusxb")
 
-[node name="CenterContainer" type="CenterContainer" parent="Pause"]
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("5_ysw0k")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Pause/CenterContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer"]
 layout_mode = 2
+theme_override_constants/separation = 5
 
-[node name="Label" type="Label" parent="Pause/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Wiggly Ball"
+theme_override_font_sizes/font_size = 50
+text = "WIGGLY BALL"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="Pause/CenterContainer/VBoxContainer"]
+[node name="Label2" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
-text = "Welcome!
-In this game you need to wiggle the ball sideways to gain speed.
-But be careful.
-With great speed comes great bounces!"
+text = "Wiggle the ball from side to side (Mouse, Touch or keys A/D) to gain speed.
+But be careful. With great speed comes great bounces!"
 horizontal_alignment = 1
 
-[node name="StartButton" type="Button" parent="Pause/CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(150, 60)
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/CenterContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_constants/separation = 5
+
+[node name="StartButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
 shortcut = SubResource("Shortcut_ddjjt")
 text = "Start"
 
-[node name="FullscreenButton" type="Button" parent="Pause/CenterContainer/VBoxContainer"]
+[node name="FullscreenButton" type="Button" parent="CanvasLayer/CenterContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 shortcut = SubResource("Shortcut_g2ksc")
 text = "Fullscreen (F)"
 
-[node name="Label3" type="Label" parent="Pause/CenterContainer/VBoxContainer"]
+[node name="Label3" type="Label" parent="CanvasLayer/CenterContainer/VBoxContainer"]
 layout_mode = 2
 text = "Press Esc to Pause at any time"
 horizontal_alignment = 1
 
-[connection signal="pressed" from="Pause/CenterContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
-[connection signal="pressed" from="Pause/CenterContainer/VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/VBoxContainer/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/CenterContainer/VBoxContainer/VBoxContainer/FullscreenButton" to="." method="_on_fullscreen_button_pressed"]

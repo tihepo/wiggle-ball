@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dqac65jrr30w6"]
+[gd_scene load_steps=13 format=3 uid="uid://dqac65jrr30w6"]
 
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_x87ln"]
 [ext_resource type="Texture2D" uid="uid://cknnpbe7gnutf" path="res://textures/prototype/Green/texture_01.png" id="2_8ys57"]
 [ext_resource type="PackedScene" uid="uid://dl63j3eaedywp" path="res://map/parts/gate.tscn" id="3_0o6w0"]
 [ext_resource type="Script" path="res://scenes/geometry.gd" id="4_jra8y"]
-[ext_resource type="Script" path="res://scenes/pause.gd" id="6_m74fr"]
+[ext_resource type="Script" path="res://scenes/pause.gd" id="6_trnux"]
+[ext_resource type="Theme" uid="uid://dvb4p5ixtsmgm" path="res://theme.tres" id="7_hdiu4"]
 [ext_resource type="PackedScene" uid="uid://bws1nxafxkrd" path="res://scenes/ball.tscn" id="11_sydck"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dv26n"]
@@ -36,6 +37,7 @@ environment = SubResource("Environment_xj5u1")
 
 [node name="sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.933167, 0.309878, -0.182139, 0, 0.506726, 0.862107, 0.359443, -0.80449, 0.47286, 0, 11.1155, 0)
+visible = false
 light_energy = 0.25
 shadow_enabled = true
 sky_mode = 1
@@ -46,8 +48,8 @@ use_collision = true
 size = Vector3(20, 1, 20)
 material = SubResource("StandardMaterial3D_jxrtg")
 
-[node name="Gate" parent="." instance=ExtResource("3_0o6w0")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.08165e-12, 2.08165e-12, 7)
+[node name="Gate" parent="StartPlatform" instance=ExtResource("3_0o6w0")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.08165e-12, 2.08165e-12, 10)
 visible = false
 
 [node name="geometry" type="Node3D" parent="."]
@@ -56,49 +58,197 @@ script = ExtResource("4_jra8y")
 [node name="Ball" parent="." instance=ExtResource("11_sydck")]
 transform = Transform3D(-1, 0, -8.74227e-08, 0, 1, 0, 8.74227e-08, 0, -1, 0, 2, 0)
 
-[node name="Pause" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 process_mode = 3
-visible = false
-script = ExtResource("6_m74fr")
 
-[node name="CenterContainer" type="CenterContainer" parent="Pause"]
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Pause/CenterContainer"]
+[node name="Pause" type="Control" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
 layout_mode = 2
+anchors_preset = 0
+offset_left = 515.0
+offset_top = 269.0
+offset_right = 765.0
+offset_bottom = 451.0
+script = ExtResource("6_trnux")
 
-[node name="Label" type="Label" parent="Pause/CenterContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="CanvasLayer/Control/Pause"]
 layout_mode = 2
-theme_override_font_sizes/font_size = 25
-text = "Wiggly Ball"
+offset_right = 250.0
+offset_bottom = 72.0
+theme_override_font_sizes/font_size = 50
+text = "PAUSED"
 horizontal_alignment = 1
 
-[node name="Label2" type="Label" parent="Pause/CenterContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/Pause"]
 layout_mode = 2
-text = "Welcome!
-In this game you need to wiggle the ball sideways to gain speed.
-But be careful.
-With great speed comes great bounces!"
-horizontal_alignment = 1
+offset_top = 77.0
+offset_right = 250.0
+offset_bottom = 173.0
+size_flags_horizontal = 4
+theme_override_constants/separation = 5
 
-[node name="StartButton" type="Button" parent="Pause/CenterContainer/VBoxContainer"]
-custom_minimum_size = Vector2(150, 60)
+[node name="StartButton" type="Button" parent="CanvasLayer/Control/Pause/VBoxContainer"]
+custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
 text = "Continue"
 
-[node name="FullscreenButton" type="Button" parent="Pause/CenterContainer/VBoxContainer"]
+[node name="FullscreenButton" type="Button" parent="CanvasLayer/Control/Pause/VBoxContainer"]
 layout_mode = 2
 text = "Fullscreen (F)"
 
-[node name="Label3" type="Label" parent="Pause/CenterContainer/VBoxContainer"]
+[node name="HUDTop" type="MarginContainer" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 67.0
+grow_horizontal = 2
+theme = ExtResource("7_hdiu4")
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="StatsBox" type="HBoxContainer" parent="CanvasLayer/Control/HUDTop"]
+unique_name_in_owner = true
 layout_mode = 2
-text = "Press Esc to Pause at any time"
+theme_override_constants/separation = 8
+
+[node name="TimeLabel" type="Label" parent="CanvasLayer/Control/HUDTop/StatsBox"]
+layout_mode = 2
+text = "Time:"
+
+[node name="Time" type="Label" parent="CanvasLayer/Control/HUDTop/StatsBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0.00"
+
+[node name="TimeUnit" type="Label" parent="CanvasLayer/Control/HUDTop/StatsBox"]
+layout_mode = 2
+text = "s"
+
+[node name="SPACE" type="Label" parent="CanvasLayer/Control/HUDTop/StatsBox"]
+layout_mode = 2
+
+[node name="DistanceLabel2" type="Label" parent="CanvasLayer/Control/HUDTop/StatsBox"]
+layout_mode = 2
+text = "Distance:"
+
+[node name="Distance" type="Label" parent="CanvasLayer/Control/HUDTop/StatsBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="DistanceUnit" type="Label" parent="CanvasLayer/Control/HUDTop/StatsBox"]
+layout_mode = 2
+text = "m"
+
+[node name="SPACE2" type="Label" parent="CanvasLayer/Control/HUDTop/StatsBox"]
+layout_mode = 2
+
+[node name="AvgSpeedLabe" type="Label" parent="CanvasLayer/Control/HUDTop/StatsBox"]
+layout_mode = 2
+text = "Avg. speed:"
+
+[node name="AvgSpeed" type="Label" parent="CanvasLayer/Control/HUDTop/StatsBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "0"
+
+[node name="AvgSpeedUnit" type="Label" parent="CanvasLayer/Control/HUDTop/StatsBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "km/h"
+
+[node name="HUDBottom" type="MarginContainer" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -100.0
+grow_horizontal = 2
+grow_vertical = 0
+theme = ExtResource("7_hdiu4")
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="BottomHBox" type="HBoxContainer" parent="CanvasLayer/Control/HUDBottom"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 8
+theme_override_constants/separation = 10
+
+[node name="SpeedLabel" type="Label" parent="CanvasLayer/Control/HUDBottom/BottomHBox"]
+visible = false
+layout_mode = 2
+text = "Speed:"
+vertical_alignment = 1
+
+[node name="Speed" type="Label" parent="CanvasLayer/Control/HUDBottom/BottomHBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "0"
+vertical_alignment = 1
+
+[node name="SpeedUnit" type="Label" parent="CanvasLayer/Control/HUDBottom/BottomHBox"]
+layout_mode = 2
+text = "km/h"
+vertical_alignment = 1
+
+[node name="GameOver" type="MarginContainer" parent="CanvasLayer/Control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -151.0
+offset_top = -114.0
+offset_right = 151.0
+offset_bottom = 114.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("7_hdiu4")
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/GameOver"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/GameOver/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "GAME OVER"
 horizontal_alignment = 1
 
-[connection signal="body_entered" from="Gate" to="." method="_on_gate_body_entered"]
-[connection signal="pressed" from="Pause/CenterContainer/VBoxContainer/StartButton" to="Pause" method="unpause"]
-[connection signal="pressed" from="Pause/CenterContainer/VBoxContainer/FullscreenButton" to="Pause" method="toggle_fullscreen"]
+[node name="RetryButton" type="Button" parent="CanvasLayer/Control/GameOver/VBoxContainer"]
+custom_minimum_size = Vector2(250, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Retry"
+
+[node name="ExitButton" type="Button" parent="CanvasLayer/Control/GameOver/VBoxContainer"]
+custom_minimum_size = Vector2(250, 60)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Exit"
+
+[connection signal="body_entered" from="StartPlatform/Gate" to="." method="_on_gate_body_entered"]
+[connection signal="pressed" from="CanvasLayer/Control/GameOver/VBoxContainer/RetryButton" to="CanvasLayer/Control/Pause" method="_on_retry_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/GameOver/VBoxContainer/ExitButton" to="CanvasLayer/Control/Pause" method="_on_exit_button_pressed"]

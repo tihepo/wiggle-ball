@@ -1,4 +1,4 @@
-extends CanvasLayer
+extends Control
 
 func _unhandled_input(event):
 	if event.is_action_released("ui_accept"):
@@ -32,3 +32,11 @@ func toggle_fullscreen():
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_FULLSCREEN)
 	else:
 		DisplayServer.window_set_mode(DisplayServer.WINDOW_MODE_WINDOWED)
+
+func _on_exit_button_pressed():
+	unpause()
+	get_tree().change_scene_to_file("res://scenes/start.tscn")
+
+func _on_retry_button_pressed():
+	unpause()
+	get_tree().reload_current_scene()

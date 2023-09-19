@@ -35,9 +35,6 @@ func _process(delta):
 	# Increase speed slowly
 	speed *= 1 + .01 * delta
 
-	if global_position.y < -10:
-		get_tree().reload_current_scene()
-
 	var x = Input.get_axis("move_left", "move_right") * key_sensitivity * delta
 	var y = 0 #Input.get_axis("move_forward", "move_backward") * key_sensitivity * delta
 	if !(is_zero_approx(x) and is_zero_approx(y)):
@@ -46,15 +43,16 @@ func _process(delta):
 func _input(event):
 	jumping = false
 	running = true
-	if steering && event is InputEventMouseMotion:
+	if event is InputEventMouseMotion:
 		var x = event.relative.x * mouse_sensitivity
 		var y = event.relative.y * mouse_sensitivity
 		y = 0.0
 		steer(x,y)
 
 func steer(x, y):
-	apply_torque(camera.basis * Vector3(y, 0, -x) )
-	apply_central_impulse(camera.basis * Vector3(x, 0.01, -abs(x) * wiggle_factor ))
+	apply_torque(camera.basis * Vector3(y, 0, -x * 4) )
+	if steering:
+		apply_central_impulse(camera.basis * Vector3(x, 0.01, -abs(x) * wiggle_factor ))
 
 func _on_jump_timeout():
 	max_contacts_reported = 1

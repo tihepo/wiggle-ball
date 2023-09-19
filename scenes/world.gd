@@ -17,7 +17,7 @@ var sections: Array[PackedScene] = [
 @onready var geometry = $geometry
 @onready var camera = $Ball/Target/camera
 
-@onready var next_gate = $Gate
+@onready var next_gate = $StartPlatform/Gate
 
 var N = 0
 var max_live_sections = 5
@@ -25,23 +25,67 @@ var max_live_sections = 5
 var live_sections: Array[Node3D]
 
 var t_elapsed = 0.0
+var distance = 0.0
+var last_position: Vector3
 
 func _ready():
 	gate_passed()
 	ball.steering = true
-	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	unpause()
+	%Pause.visible = false
+	%GameOver.visible = false
+	%HUDTop.visible = true
+	%HUDBottom.visible = true
+	
+	# Ensure start platform gets freed like other sections we've passed
+	live_sections.append($StartPlatform)
+	
+	last_position = ball.global_position
+
+func mps_to_kmph(mps):
+	# meters per second to km per hour
+	return mps * 60*60 / 1000.
 
 func _physics_process(delta):
 	if ball.running:
 		t_elapsed += delta
+		var d = (ball.global_position-last_position)
+		d.y = 0  # Don't count changes in height
+		var length = d.length()
+		distance += length
+		last_position = ball.global_position
+		%Time.text = "%.1f" % t_elapsed
+		%Distance.text = "%.0f" % distance
+
+		# Only update speeds every 6 frame = 10 times per second
+		if get_tree().get_frame() % 6 == 0:
+#			print(ball.global_position)
+			%AvgSpeed.text = "%.0f" % mps_to_kmph(distance/t_elapsed)
+			%Speed.text = "%.0f" % mps_to_kmph(length/delta)
+
+	if ball.global_position.y < -10:
+		gameover()
+
+func pause():
+	get_tree().paused = true
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+
+func unpause():
+	get_tree().paused = false
+	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+
+func gameover():
+	pause()
+	%Pause.visible = false
+	%GameOver.visible = true
+	%HUDTop.visible = true
+	%HUDBottom.visible = false
+#	pause()
 
 func gate_passed():
 #	sections = [
 #		preload("res://map/zigzag1.tscn"),
 #	]
-
-	print("t= ", t_elapsed)
-	t_elapsed = 0.0
 
 	# Remove one existing sections
 	while len(live_sections) > max_live_sections:
@@ -75,4 +119,4 @@ func spawn():
 
 func _on_gate_body_entered(body):
 	gate_passed()
-#	$StartPlatform.queue_free()
+
