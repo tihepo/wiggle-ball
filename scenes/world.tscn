@@ -1,27 +1,22 @@
-[gd_scene load_steps=13 format=3 uid="uid://dqac65jrr30w6"]
+[gd_scene load_steps=10 format=3 uid="uid://dqac65jrr30w6"]
 
 [ext_resource type="Script" path="res://scenes/world.gd" id="1_x87ln"]
 [ext_resource type="Texture2D" uid="uid://cknnpbe7gnutf" path="res://textures/prototype/Green/texture_01.png" id="2_8ys57"]
-[ext_resource type="PackedScene" uid="uid://dl63j3eaedywp" path="res://map/parts/gate.tscn" id="3_0o6w0"]
 [ext_resource type="Script" path="res://scenes/geometry.gd" id="4_jra8y"]
+[ext_resource type="PackedScene" uid="uid://bft2a5qn2einq" path="res://map/parts/start_gate.tscn" id="4_sfr6e"]
 [ext_resource type="Script" path="res://scenes/pause.gd" id="6_trnux"]
 [ext_resource type="Theme" uid="uid://dvb4p5ixtsmgm" path="res://theme.tres" id="7_hdiu4"]
 [ext_resource type="PackedScene" uid="uid://bws1nxafxkrd" path="res://scenes/ball.tscn" id="11_sydck"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_dv26n"]
-
-[sub_resource type="PanoramaSkyMaterial" id="PanoramaSkyMaterial_6bxyf"]
-panorama = SubResource("CompressedTexture2D_dv26n")
-
-[sub_resource type="Sky" id="Sky_cvyow"]
-sky_material = SubResource("PanoramaSkyMaterial_6bxyf")
-
 [sub_resource type="Environment" id="Environment_xj5u1"]
-background_mode = 1
-sky = SubResource("Sky_cvyow")
+background_mode = 2
 glow_enabled = true
-glow_intensity = 5.0
+glow_intensity = 0.1
+glow_strength = 0.5
+glow_blend_mode = 0
 fog_light_energy = 0.1
+fog_sun_scatter = 1.0
+volumetric_fog_enabled = true
 volumetric_fog_albedo = Color(0, 0, 0, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jxrtg"]
@@ -48,9 +43,8 @@ use_collision = true
 size = Vector3(20, 1, 20)
 material = SubResource("StandardMaterial3D_jxrtg")
 
-[node name="Gate" parent="StartPlatform" instance=ExtResource("3_0o6w0")]
-transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 2.08165e-12, 2.08165e-12, 10)
-visible = false
+[node name="StartGate" parent="StartPlatform" instance=ExtResource("4_sfr6e")]
+transform = Transform3D(-1, 3.48787e-16, -8.74228e-08, 3.48787e-16, 1, -3.48787e-16, 8.74228e-08, -3.48787e-16, -1, 2.08165e-12, 0.5, 10)
 
 [node name="geometry" type="Node3D" parent="."]
 script = ExtResource("4_jra8y")
@@ -249,6 +243,5 @@ layout_mode = 2
 size_flags_horizontal = 4
 text = "Exit"
 
-[connection signal="body_entered" from="StartPlatform/Gate" to="." method="_on_gate_body_entered"]
 [connection signal="pressed" from="CanvasLayer/Control/GameOver/VBoxContainer/RetryButton" to="CanvasLayer/Control/Pause" method="_on_retry_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/GameOver/VBoxContainer/ExitButton" to="CanvasLayer/Control/Pause" method="_on_exit_button_pressed"]

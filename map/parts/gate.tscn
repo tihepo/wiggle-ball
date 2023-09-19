@@ -2,16 +2,14 @@
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_2ry72"]
 
+[sub_resource type="TorusMesh" id="TorusMesh_jbjys"]
+inner_radius = 9.75
+outer_radius = 10.0
+ring_segments = 8
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_3c7qg"]
 transparency = 1
 emission = Color(1, 1, 1, 1)
-
-[sub_resource type="TorusMesh" id="TorusMesh_jbjys"]
-material = SubResource("StandardMaterial3D_3c7qg")
-inner_radius = 3.75
-outer_radius = 4.0
-rings = 6
-ring_segments = 8
 
 [sub_resource type="TorusMesh" id="TorusMesh_e8v0y"]
 material = SubResource("StandardMaterial3D_3c7qg")

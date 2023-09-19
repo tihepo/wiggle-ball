@@ -1,6 +1,6 @@
 extends Control
 
-func _unhandled_input(event):
+func _input(event):
 	if event.is_action_released("ui_accept"):
 			get_tree().paused = false
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)

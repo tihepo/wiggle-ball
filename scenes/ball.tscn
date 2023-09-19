@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bws1nxafxkrd"]
+[gd_scene load_steps=14 format=3 uid="uid://bws1nxafxkrd"]
 
 [ext_resource type="Script" path="res://scenes/ball.gd" id="1_7pkxo"]
 [ext_resource type="Script" path="res://scenes/camera.gd" id="2_nqteb"]
@@ -9,6 +9,13 @@
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_1emct"]
 rough = true
 bounce = 1.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_deodt"]
+albedo_color = Color(0.105882, 0.105882, 0.105882, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_386d8"]
+material = SubResource("StandardMaterial3D_deodt")
+size = Vector2(2000, 2000)
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_0iew0"]
 fractal_type = 2
@@ -154,6 +161,11 @@ shadow_enabled = true
 spot_range = 88.583
 spot_attenuation = 1.6245
 spot_angle_attenuation = 1.6245
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Target/camera"]
+transform = Transform3D(1, -7.87213e-16, 3.43701e-17, -1.0285e-16, -0.173648, -0.984808, 7.81221e-16, 0.984808, -0.173648, 2.08165e-12, 2.08165e-12, -100)
+visible = false
+mesh = SubResource("PlaneMesh_386d8")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 visible = false

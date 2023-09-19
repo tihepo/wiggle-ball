@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://brkr35i0qwkk6"]
+[gd_scene load_steps=5 format=3 uid="uid://brkr35i0qwkk6"]
 
 [ext_resource type="Texture2D" uid="uid://bw2k1qm0u10df" path="res://textures/prototype/Red/texture_01.png" id="1_7gxwa"]
+[ext_resource type="PackedScene" uid="uid://bft2a5qn2einq" path="res://map/parts/start_gate.tscn" id="2_3cnge"]
 [ext_resource type="PackedScene" uid="uid://dl63j3eaedywp" path="res://map/parts/gate.tscn" id="2_y6rgc"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mbfiu"]
@@ -44,7 +45,7 @@ material_override = SubResource("StandardMaterial3D_mbfiu")
 use_collision = true
 size = Vector3(10.2468, 2, 2)
 
-[node name="Gate" parent="." instance=ExtResource("2_y6rgc")]
+[node name="StartGate" parent="." instance=ExtResource("2_3cnge")]
 transform = Transform3D(-1, -5.55393e-10, -8.7421e-08, 3.12772e-25, 0.99998, -0.00635296, 8.74228e-08, -0.00635296, -0.99998, -0.33781, -3.51576, -16.6485)
 
 [node name="Gate2" parent="." instance=ExtResource("2_y6rgc")]
