@@ -79,18 +79,21 @@ surface_material_override/0 = SubResource("StandardMaterial3D_qyfqr")
 
 [node name="MeshInstance3D3" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.866025, 5.85622e-09, 0.5, 0.5, -2.18557e-08, -0.866025, 5.85622e-09, 1, -2.18557e-08, 0, 3.4, -0.414641)
+visible = false
 transparency = 0.9
 mesh = SubResource("TorusMesh_031j8")
 surface_material_override/0 = SubResource("StandardMaterial3D_qyfqr")
 
 [node name="MeshInstance3D5" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.866025, 5.85622e-09, 0.5, 0.5, -2.18557e-08, -0.866025, 5.85622e-09, 1, -2.18557e-08, 0, 3.4, -0.814641)
+visible = false
 transparency = 0.9
 mesh = SubResource("TorusMesh_031j8")
 surface_material_override/0 = SubResource("StandardMaterial3D_qyfqr")
 
 [node name="MeshInstance3D6" type="MeshInstance3D" parent="."]
 transform = Transform3D(0.866025, 5.85622e-09, 0.5, 0.5, -2.18557e-08, -0.866025, 5.85622e-09, 1, -2.18557e-08, 0, 3.4, -1.21464)
+visible = false
 transparency = 0.9
 mesh = SubResource("TorusMesh_031j8")
 surface_material_override/0 = SubResource("StandardMaterial3D_qyfqr")
@@ -109,6 +112,7 @@ mesh = SubResource("TorusMesh_23s01")
 
 [node name="Floor4x1" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08165e-12, -0.5, -2)
+visible = false
 transparency = 0.8
 mesh = SubResource("BoxMesh_ldn2r")
 
