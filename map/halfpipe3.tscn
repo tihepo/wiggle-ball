@@ -10,25 +10,25 @@ albedo_texture = ExtResource("1_7gxwa")
 [node name="Halfpipe3" type="Node3D"]
 
 [node name="CSGBox3D15" type="CSGBox3D" parent="."]
-transform = Transform3D(0.938927, 0.344119, 0, -0.344119, 0.938927, 0, 0, 0, 1, -2.82254, -2.30539, -0.79758)
+transform = Transform3D(0.843956, 0.504229, 0.183013, -0.398783, 0.361582, 0.842752, 0.358766, -0.784228, 0.506236, 2.27746, -2.60539, 1.70242)
 material_override = SubResource("StandardMaterial3D_mbfiu")
 use_collision = true
-size = Vector3(2, 3.46514, 4.58136)
+size = Vector3(2, 3.46514, 10)
 
 [node name="CSGBox3D13" type="CSGBox3D" parent="."]
-transform = Transform3D(0.982958, -0.183832, 0, 0.183832, 0.982958, 0, 0, 0, 1, 1.39471, -2.09635, -5.55059)
+transform = Transform3D(0.930868, 0.26643, -0.25, -0.353605, 0.829134, -0.433013, 0.091916, 0.491479, 0.866025, 2.19471, -2.49635, -5.55059)
 material_override = SubResource("StandardMaterial3D_mbfiu")
 use_collision = true
-size = Vector3(2, 4.95312, 2)
+size = Vector3(2, 12, 2)
 
 [node name="CSGBox3D14" type="CSGBox3D" parent="."]
-transform = Transform3D(-0.591872, 0.806032, 0, -0.806032, -0.591872, 0, 0, 0, 1, 0.919193, -1.11252, 7.94342)
+transform = Transform3D(-0.86691, 0.44899, 0.216506, -0.47638, -0.618415, -0.625, -0.146728, -0.644958, 0.75, 2.41919, 0.68748, 16.5434)
 material_override = SubResource("StandardMaterial3D_mbfiu")
 use_collision = true
-size = Vector3(2, 5.46039, 2)
+size = Vector3(2, 10, 2)
 
 [node name="CSGBox3D18" type="CSGBox3D" parent="."]
-transform = Transform3D(0.465599, 0.884996, 0, -0.884996, 0.465599, 0, 0, 0, 1, -3.26669, -1.45145, 16.5904)
+transform = Transform3D(0.0638159, -0.135086, -0.988777, -0.644355, 0.75101, -0.144189, 0.762059, 0.646325, -0.0391171, -3.66669, -2.95145, 14.5904)
 material_override = SubResource("StandardMaterial3D_mbfiu")
 use_collision = true
 size = Vector3(2, 6.08328, 2)
@@ -36,11 +36,11 @@ size = Vector3(2, 6.08328, 2)
 [node name="CSGPolygon3D4" type="CSGPolygon3D" parent="."]
 transform = Transform3D(0.997863, -0.0653512, 2.43456e-09, -0.0653512, -0.997863, 3.71733e-08, -8.34615e-16, -3.72529e-08, -1, -0.448913, -0.858876, -16.6346)
 use_collision = true
-polygon = PackedVector2Array(1.784, 2.6153, -1.28705, 2.81445, -3.17316, 1.21375, -3.59235, -2.0011, -6.15826, -2.3551, -5.81415, 0.804199, -2.69092, 4.50189, 0.432739, 4.88116, 3.46149, 3.89325, 5.01007, 0.87323, 4.6684, -2.13416, 2.77545, -2.13977, 3.22931, 0.717773)
+polygon = PackedVector2Array(2.9, 2.7, -2, 3, -4, 1, -4, -2, -7, -2, -6, 2, -3, 5, 0, 6, 4, 5, 6, 1, 6, -2, 4, -2, 4, 1)
 depth = 40.0
 
 [node name="CSGBox3D22" type="CSGBox3D" parent="."]
-transform = Transform3D(0.998077, 0.0619887, 0, -0.0619887, 0.998077, 0, 0, 0, 1, -1.02054, 2.30471, 19.3784)
+transform = Transform3D(0.979924, -4.11322e-16, -0.199368, 3.48787e-16, 1, -3.48787e-16, 0.199368, 2.72248e-16, 0.979925, -0.12054, -3.39529, 4.3784)
 material_override = SubResource("StandardMaterial3D_mbfiu")
 use_collision = true
 size = Vector3(10.2468, 2, 2)
