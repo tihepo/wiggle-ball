@@ -57,6 +57,7 @@ size = Vector3(4, 1, 4)
 script = ExtResource("1_my5gk")
 
 [node name="Plane" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.939693, 0.34202, 0, -0.34202, 0.939693, 0, 0, 0)
 collision_mask = 2
 
 [node name="CollisionPlane" type="CollisionShape3D" parent="Plane"]

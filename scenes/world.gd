@@ -66,9 +66,6 @@ func _physics_process(delta):
 			%AvgSpeed.text = "%.0f" % mps_to_kmph(distance/t_elapsed)
 			%Speed.text = "%.0f" % mps_to_kmph(length/delta)
 
-	if ball.global_position.y < -10:
-		gameover()
-
 func pause():
 	get_tree().paused = true
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
