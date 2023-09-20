@@ -79,7 +79,7 @@ func gameover():
 	%Pause.visible = false
 	%GameOver.visible = true
 	%HUDTop.visible = true
-	%HUDBottom.visible = false
+	%HUDBottom.visible = true
 #	pause()
 
 func gate_passed():
