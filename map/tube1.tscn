@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bw2k1qm0u10df" path="res://textures/prototype/Red/texture_01.png" id="1_qbb0s"]
 [ext_resource type="PackedScene" uid="uid://dl63j3eaedywp" path="res://map/parts/gate.tscn" id="2_3bynf"]
-[ext_resource type="PackedScene" uid="uid://bft2a5qn2einq" path="res://map/parts/start_gate.tscn" id="2_s1fxs"]
+[ext_resource type="PackedScene" uid="uid://b5tseho2jxitl" path="res://map/parts/start_gate.tscn" id="2_s1fxs"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_mbfiu"]
 albedo_texture = ExtResource("1_qbb0s")

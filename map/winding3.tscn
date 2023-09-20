@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d128s0afxsbr7"]
 
-[ext_resource type="PackedScene" uid="uid://bft2a5qn2einq" path="res://map/parts/start_gate.tscn" id="1_rlkg3"]
+[ext_resource type="PackedScene" uid="uid://b5tseho2jxitl" path="res://map/parts/start_gate.tscn" id="1_rlkg3"]
 [ext_resource type="PackedScene" uid="uid://dl63j3eaedywp" path="res://map/parts/gate.tscn" id="1_tq012"]
 
 [node name="Winding3" type="Node3D"]
