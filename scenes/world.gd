@@ -13,6 +13,9 @@ var sections: Array[PackedScene] = [
 	preload("res://map/zigzag1.tscn"),
 	preload("res://map/leo1.tscn"),
 	preload("res://map/leo2.tscn"),
+	preload("res://map/tim1.tscn"),
+	preload("res://map/tim2.tscn"),
+	preload("res://map/tim 4.tscn"),
 ]
 
 @onready var ball = $Ball
